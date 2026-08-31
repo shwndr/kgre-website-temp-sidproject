@@ -1,0 +1,1527 @@
+ /* =========================================================
+   DESIGN TOKENS
+   Edit these first — everything else inherits from here.
+   ========================================================= */
+:root {
+  /* Palette — blue theme */
+  --bg:          #F6FAFD;   /* page background */
+  --bg-alt:      #BDE8F5;   /* alternating section background */
+  --ink:         #0F2854;   /* primary text */
+  --ink-soft:    #1C4D8D;   /* secondary text */
+  --ink-faint:   #4988C4;   /* muted labels */
+  --accent:      #1C4D8D;   /* buttons, links, accents */
+  --accent-dark: #0F2854;
+  --highlight:   #4988C4;   /* hover pop on dark surfaces (nav, hero, footer) */
+  --line:        #CFE7F1;   /* hairline borders */
+  --white:       #FFFFFF;
+  --gold:        #B9975B;   /* pulled from the Greatness crest — used only as a thin accent, never a fill */
+
+  /* Type */
+  --display: 'Lexend Deca', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --body:    'Lexend Deca', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono:    'Lexend Deca', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --serif:   'Fraunces', Georgia, 'Times New Roman', serif;   /* used only for stat numerals — one restrained flourish */
+
+  /* Layout */
+  --max:    1240px;
+  --gutter: clamp(20px, 5vw, 56px);
+  --radius: 2px;
+}
+
+/* =========================================================
+   RESET & BASE
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a   { color: inherit; text-decoration: none; }
+ul  { list-style: none; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.wrap {
+  max-width: var(--max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* Screen-reader-only helper (used for the skip link) */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link:focus {
+  position: fixed; top: 12px; left: 12px;
+  width: auto; height: auto; clip: auto;
+  background: var(--ink); color: var(--white);
+  padding: 12px 20px; z-index: 999;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -.015em;
+}
+h1 { font-size: clamp(40px, 6vw, 74px); font-weight: 500; }
+h2 { font-size: clamp(28px, 3.8vw, 44px); }
+h3 { font-size: clamp(19px, 2vw, 24px); }
+h4 { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.3; }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.eyebrow::before { content: ''; width: 26px; height: 1px; background: currentColor; }
+.eyebrow.center { justify-content: center; }
+
+.lede {
+  font-size: clamp(16.5px, 1.5vw, 19px);
+  color: var(--ink-soft);
+  max-width: 58ch;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 16px 30px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .22s ease, color .22s ease, border-color .22s ease;
+}
+.btn:hover { background: var(--ink); color: var(--bg); }
+
+.btn-solid { background: var(--accent); border-color: var(--accent); color: var(--white); }
+.btn-solid:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: var(--white); }
+
+.btn-light { border-color: rgba(255,255,255,.6); color: var(--white); }
+.btn-light:hover { background: var(--white); border-color: var(--white); color: var(--ink); }
+
+/* =========================================================
+   HEADER / NAV
+   Dark glass, always-on — more opaque once scrolled (see main.js)
+   Layout: brand — nav links — (spacer) — phone / socials / email
+   ========================================================= */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(13,15,16,.32);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  transition: background .3s ease, border-color .3s ease;
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+  height: 82px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.brand-logo {
+  height: 46px;
+  width: auto;
+  display: block;
+}
+
+/* Wraps the nav links + contact cluster so both collapse together on mobile */
+.nav-collapse {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+  flex: 1;
+  min-width: 0;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+.nav a {
+  color: rgba(255,255,255,.85);
+  padding: 6px 0;
+  position: relative;
+  transition: color .2s ease;
+}
+.nav a:hover, .nav a.active { color: var(--highlight); }
+.nav a::after {
+  content: '';
+  position: absolute; left: 0; right: 100%; bottom: 0;
+  height: 1px; background: currentColor;
+  transition: right .25s ease;
+}
+.nav a:hover::after, .nav a.active::after { right: 0; }
+
+/* Right-side contact cluster */
+.nav-extras {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin-left: auto;
+}
+.nav-phone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: .05em;
+  color: rgba(255,255,255,.85);
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+.nav-phone:hover { color: var(--white); }
+
+.nav-socials { display: flex; align-items: center; gap: 8px; }
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px; height: 34px;
+  color: rgba(255,255,255,.8);
+  transition: color .2s ease, transform .2s ease;
+}
+.social-icon:hover { color: var(--highlight); transform: translateY(-1px); }
+
+/* Scrolled state — same dark theme, just more opaque */
+.site-header.scrolled {
+  background: rgba(13,15,16,.88);
+  border-bottom-color: rgba(255,255,255,.1);
+}
+
+/* Mobile toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+}
+.nav-toggle span {
+  width: 24px; height: 1.5px;
+  background: var(--white);
+}
+
+@media (max-width: 900px) {
+  .nav-collapse { display: none; }
+  .nav-toggle { display: flex; margin-left: auto; }
+
+  .nav-collapse.open {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 26px;
+    position: absolute;
+    top: 82px; left: 0; right: 0;
+    background: rgba(13,15,16,.97);
+    padding: 26px var(--gutter) 32px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+  .nav-collapse.open .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .nav-collapse.open .nav-extras {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-left: 0;
+  }
+  .nav-collapse.open .nav-socials { gap: 20px; }
+}
+
+/* =========================================================
+   HERO — full viewport height
+   ========================================================= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;      /* better mobile behaviour */
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  overflow: hidden;
+}
+
+/* Background slideshow — a stack of full-bleed slides crossfading
+   via the .active class (see main.js). Dark fallback color shows
+   while the first image loads. */
+.hero-media {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+  background: #0F2854;
+}
+.hero-slide {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+.hero-slide.active { opacity: 1; }
+.hero-media::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, rgba(15,40,84,.45), rgba(15,40,84,.25) 45%, rgba(15,40,84,.6));
+}
+
+/* Centered watermark emblem — above the photo + dark overlay, below the hero copy/nav */
+.hero-watermark {
+  position: absolute;
+  top: 50%; left: 30%;   /* 30% left of center */
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 1200px;
+  height: auto;   /* without this, the browser falls back to the raw height="1254" HTML attribute instead of scaling with width — turns into a tall sliver once width shrinks on mobile */
+  max-width: 90vw;
+  opacity: .05;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* On narrow screens 90vw is nearly the full viewport width, which
+   clips the left edge at the same 30%-left position desktop uses.
+   Keep that same offset (don't re-center — centering stacks it
+   directly behind the wordmark's own circle and the two compress
+   into one muddled shape) and just cap the size so, at a 30% offset,
+   it can never extend past the edge: width <= 60vw is the exact
+   no-clip threshold at this position, so 58vw leaves a small margin. */
+@media (max-width: 640px) {
+  .hero-watermark {
+    width: 400px;
+    max-width: 58vw;
+  }
+}
+
+/* Centered wordmark logo — above the watermark emblem.
+   width/height are set independently so both can be tuned by hand;
+   object-fit: contain stops the image from stretching if the two
+   ever stop matching kgre-header.png's native 2172:724 ratio. */
+.hero-logo {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 1000px;    /* ← adjust manually */
+  height: 500px;    /* ← adjust manually */
+  object-fit: contain;
+  max-width: 90vw;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Vertical social rail, left edge of the hero */
+.hero-socials {
+  position: absolute;
+  top: 50%; left: 30px;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.hero-social-line {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,.45);
+}
+.hero-social-icon {
+  width: 50px; height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,.12);
+  color: var(--white);
+  transition: background .22s ease, color .22s ease, transform .22s ease;
+}
+.hero-social-icon:hover { background: var(--white); color: var(--ink); transform: translateY(-2px); }
+
+@media (max-width: 640px) { .hero-socials { display: none; } }
+
+.hero .wrap { position: relative; z-index: 2; width: 100%; }
+.hero-inner { max-width: 780px; }
+.hero .eyebrow { color: var(--highlight); }
+.hero h1 { margin-bottom: 20px; }
+.hero p {
+  font-size: clamp(16.5px, 1.6vw, 19.5px);
+  color: rgba(255,255,255,.82);
+  max-width: 54ch;
+  margin-bottom: 36px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 34px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.65);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.hero-scroll::after {
+  content: '';
+  width: 1px; height: 42px;
+  background: linear-gradient(rgba(255,255,255,.6), transparent);
+}
+
+@media (max-width: 640px) { .hero-scroll { display: none; } }
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+section { padding: clamp(64px, 9vw, 118px) 0; }
+.section-alt { background: var(--bg-alt); }
+
+/* Team section — tighter top/bottom padding than the shared default */
+#team {
+  padding-top: 30px;
+  padding-bottom: 90px;
+}
+
+/* About section — warm parchment tone, set apart from the rest of the
+   page's cool blues. A faint dashed wave pattern sits behind the
+   content (::before, z-index 0) — a quiet nod to the CT/NY coastline
+   Kevin works, not a generic texture. */
+#about {
+  background: #E1DCC9;
+  position: relative;
+  overflow: hidden;
+}
+#about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: repeat;
+  background-size: 460px 170px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='460' height='170' viewBox='0 0 460 170'%3E%3Cpath d='M-20 40 C 40 5, 95 75, 155 40 C 215 5, 270 75, 330 40 C 390 5, 445 75, 500 40' fill='none' stroke='%230F2854' stroke-width='1.4' stroke-dasharray='2 7' stroke-linecap='round' opacity='0.16'/%3E%3Cpath d='M-20 130 C 40 95, 95 165, 155 130 C 215 95, 270 165, 330 130 C 390 95, 445 165, 500 130' fill='none' stroke='%230F2854' stroke-width='1.4' stroke-dasharray='2 7' stroke-linecap='round' opacity='0.16'/%3E%3C/svg%3E");
+}
+/* The section's real content sits in .wrap children — lift just those
+   above the ::before pattern without touching .about-socials, which
+   already manages its own stacking via position:absolute. */
+#about > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* Vertical social rail, right edge — same pattern as .hero-socials,
+   recolored for this section's light background. */
+.about-socials {
+  position: absolute;
+  top: 50%; right: 30px;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.about-social-line {
+  width: 1px;
+  height: 40px;
+  background: rgba(15,40,84,.25);
+}
+.about-social-icon {
+  width: 38px; height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(15,40,84,.06);
+  color: var(--ink);
+  transition: background .22s ease, color .22s ease, transform .22s ease;
+}
+.about-social-icon:hover { background: var(--accent); color: var(--white); transform: translateY(-2px); }
+
+@media (max-width: 640px) { .about-socials { display: none; } }
+
+/* Buyers & Sellers section — same crossfading photo background as the
+   hero (.hero-media/.hero-slide are reused as-is, see main.js), with a
+   dark overlay so the section reads like the hero: light text over photo.
+   The tiles stay solid white cards, so their own text needs no change. */
+#listings {
+  position: relative;
+  overflow: hidden;
+}
+#listings > .wrap { position: relative; z-index: 2; }
+#listings .eyebrow { color: var(--highlight); }
+#listings h2 { color: var(--white); }
+#listings > .wrap > .lede { color: rgba(255,255,255,.85); }
+#listings .section-cta { border-top-color: rgba(255,255,255,.25); }
+#listings .section-cta p { color: rgba(255,255,255,.85); }
+
+/* Only 2 tiles here (Buy/Sell — Rent was removed), so drop this
+   instance from the shared 3-column .tiles grid to 2 and center it
+   at a capped width, instead of leaving an empty third column.
+   Scoped to #listings so the About section's tiles-minimal (still a
+   real 3-up) is untouched. */
+#listings .tiles {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 760px;
+  margin: 0 auto;
+}
+/* The ID-scoped selector above outranks the shared .tiles responsive
+   rules below (specificity, not source order), so it needs its own
+   mobile override or it would stay stuck at 2 columns on phones. */
+@media (max-width: 620px) {
+  #listings .tiles { grid-template-columns: 1fr; max-width: 420px; }
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 46px;
+}
+.section-head h2 { max-width: 22ch; }
+
+/* --- SECTION 1: CTA tiles ------------------------------ */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.tile {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+  padding: 44px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: background .25s ease;
+}
+.tile:hover { background: var(--white); }
+
+/* Background photo — hidden until hover, then fades in behind the text */
+.tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--tile-bg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+  z-index: 1;
+}
+.tile:hover::before { opacity: .16; }
+
+/* Keep the tile's text above the background photo layer */
+.tile > * { position: relative; z-index: 1; }
+
+.tile .num {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .1em;
+}
+.tile p { color: var(--ink-soft); font-size: 15px; flex-grow: 1; }
+.tile .go {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+/* --- "What Clients Can Expect" — minimal variant of .tiles/.tile ---
+   Scoped to its own class so the Buyers & Sellers hover-photo tiles
+   (which reuse .tiles/.tile) are untouched. Editorial and unboxed:
+   no card fill, no seams, a gold hairline standing in for the
+   01/02/03 badges since these three qualities aren't a sequence. */
+.tiles-minimal {
+  background: transparent;
+  border: 0;
+  gap: 56px;
+}
+.tiles-minimal .tile {
+  background: transparent;
+  padding: 0;
+}
+.tiles-minimal .tile:hover { background: transparent; }
+.tiles-minimal .tile::before { content: none; }
+.tiles-minimal .tile h3::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 22px;
+}
+.tiles-minimal .tile p { color: var(--ink-soft); }
+
+@media (max-width: 620px) {
+  .tiles-minimal { gap: 40px; }
+}
+
+/* --- Section CTA banner --------------------------------- */
+.section-cta {
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.section-cta p {
+  font-size: clamp(16.5px, 1.5vw, 19px);
+  color: var(--ink-soft);
+  max-width: 46ch;
+}
+
+@media (max-width: 620px) {
+  .section-cta { flex-direction: column; align-items: flex-start; }
+}
+
+/* --- Topic nav + topic sections (Buyer's/Seller's Guide pages) ---
+   A row of jump links styled as buttons — one per guide topic —
+   plus the long-form sections they point at. Native anchor links
+   + the site's existing `scroll-behavior:smooth` do the "auto
+   scroll"; scroll-margin-top keeps the fixed header from covering
+   the section title when you land on it. JS (main.js) only adds
+   the active-button highlight as you scroll through. */
+.topic-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 34px;
+}
+.topic-nav a {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--ink-soft);
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.topic-nav a:hover { border-color: var(--accent); color: var(--accent); }
+.topic-nav a.active { background: var(--accent); border-color: var(--accent); color: var(--white); }
+
+@media (max-width: 620px) {
+  .topic-nav { gap: 8px; }
+  .topic-nav a { padding: 10px 14px; font-size: 11px; }
+}
+
+/* Floating rail — the same 6 links, restyled as a fixed vertical
+   strip pinned to the right edge of the viewport so it's reachable
+   the whole time someone's reading, not just at the top of the page.
+   Only takes over on viewports wide enough that a ~180px rail can't
+   collide with the 820px reading column (see the topic-section wrap
+   width); below that the row of buttons up top (.topic-nav) is the
+   only nav, so nothing is ever lost, just relocated. Marked with a
+   small gold diamond "stake," like a waypoint on a plat — the same
+   gold hairline language as the "By the Numbers" stat dividers,
+   given a new job: marking your place in the guide. */
+.topic-rail {
+  display: none;
+  position: fixed;
+  top: 50%; right: 22px;
+  transform: translateY(-50%);
+  z-index: 90;
+  flex-direction: column;
+}
+.topic-rail a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  width: 180px;
+  padding: 9px 4px 9px 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  transition: color .2s ease;
+}
+.topic-rail a span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.topic-rail a::after {
+  content: '';
+  flex-shrink: 0;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  opacity: .35;
+  transform: rotate(45deg);
+  transition: opacity .2s ease;
+}
+.topic-rail a:hover { color: var(--accent); }
+.topic-rail a.active { color: var(--ink); font-weight: 600; }
+.topic-rail a.active::after { opacity: 1; }
+
+@media (min-width: 1300px) {
+  .topic-rail { display: flex; }
+  #buyers-intro .topic-nav { display: none; }
+}
+
+/* Buyers guide intro — photo band. Same photo-hero pattern as the
+   homepage hero and #contact: a background photo under the same
+   navy gradient the hero uses, so the heading and topic-nav buttons
+   read clearly on top instead of introducing a new visual language.
+   Photo: hand holding house-shaped keys at a home's entrance —
+   Unsplash, Jakub Żerdzicki (images/buyers-hero.jpg). */
+#buyers-intro {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+#buyers-intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('images/buyers-hero.jpg');
+  background-size: cover;
+  background-position: center 25%;
+}
+#buyers-intro::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(to bottom, rgba(15,40,84,.55), rgba(15,40,84,.35) 45%, rgba(15,40,84,.65));
+}
+#buyers-intro > .wrap { position: relative; z-index: 1; }
+#buyers-intro .eyebrow { color: var(--gold); text-shadow: 0 2px 6px rgba(0,0,0,.45); }
+#buyers-intro .eyebrow::before { box-shadow: 0 2px 6px rgba(0,0,0,.45); }
+#buyers-intro h1 { color: var(--white); }
+#buyers-intro .lede { color: rgba(255,255,255,.88); }
+
+/* Sellers guide intro — same photo-band pattern as #buyers-intro
+   above (kept as two blocks, not one shared selector, since each
+   has its own background-image). No .topic-nav to hide here — the
+   button row was removed from this page's markup entirely, so on
+   screens narrower than 1300px (where .topic-rail is hidden) this
+   page has no in-page quick-jump nav, only the floating rail.
+   Photo: "SOLD" yard sign — Unsplash, Richard Bell
+   (images/sellers-hero.jpg). */
+#sellers-intro {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+#sellers-intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('images/sellers-hero.jpg');
+  background-size: cover;
+  background-position: center 35%;
+}
+#sellers-intro::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(to bottom, rgba(15,40,84,.55), rgba(15,40,84,.35) 45%, rgba(15,40,84,.65));
+}
+#sellers-intro > .wrap { position: relative; z-index: 1; }
+#sellers-intro .eyebrow { color: var(--gold); text-shadow: 0 2px 6px rgba(0,0,0,.45); }
+#sellers-intro .eyebrow::before { box-shadow: 0 2px 6px rgba(0,0,0,.45); }
+#sellers-intro h1 { color: var(--white); }
+#sellers-intro .lede { color: rgba(255,255,255,.88); }
+
+/* Community Involvement (homepage) — same photo-band pattern again.
+   Also does useful work in the page's alternating light/section-alt
+   rhythm: it sits between Lending (alt) and Featured Properties
+   (default), both light, so a dark photo band here reads as a
+   deliberate pause/anchor rather than a rhythm break.
+   Photo: sunset crowd silhouette, provided by the user
+   (images/community-involvment-img.jpg — also used as the header
+   photo on community-involvement.html; see #community-intro below). */
+#community {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+#community::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('images/community-involvment-img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+#community::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(to bottom, rgba(15,40,84,.6), rgba(15,40,84,.45) 45%, rgba(15,40,84,.7));
+}
+#community > .wrap { position: relative; z-index: 1; }
+#community .eyebrow { color: var(--gold); text-shadow: 0 2px 6px rgba(0,0,0,.45); }
+#community .eyebrow::before { box-shadow: 0 2px 6px rgba(0,0,0,.45); }
+#community h2 { color: var(--white); }
+#community .lede { color: rgba(255,255,255,.88); }
+
+/* Community Involvement page header — same photo band again, same
+   photo as the homepage teaser above for consistency between the
+   two. Kept as its own section, separate from the article body
+   below it, so the photo only covers the heading (matches the
+   Buyers/Sellers guide page pattern). */
+#community-intro {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+#community-intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('images/community-involvment-img.jpg');
+  background-size: cover;
+  background-position: center;
+}
+#community-intro::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(to bottom, rgba(15,40,84,.6), rgba(15,40,84,.45) 45%, rgba(15,40,84,.7));
+}
+#community-intro > .wrap { position: relative; z-index: 1; }
+#community-intro .eyebrow { color: var(--gold); text-shadow: 0 2px 6px rgba(0,0,0,.45); }
+#community-intro .eyebrow::before { box-shadow: 0 2px 6px rgba(0,0,0,.45); }
+#community-intro h1 { color: var(--white); }
+#community-intro .lede { color: rgba(255,255,255,.88); }
+
+/* Badge logo (Greatness With a Purpose) — circular crop is CSS-only,
+   see the comment on the <img> itself for why. Ring + shadow lift it
+   off the dark photo band behind it. Base size is the small "accent
+   above a heading" version; #community-intro scales it up to stand
+   as its own column in that page's wide left/right split. */
+.badge-logo {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 22px;
+  border: 2px solid rgba(255,255,255,.3);
+  box-shadow: 0 8px 22px rgba(0,0,0,.35);
+}
+#community-intro .badge-logo,
+#community .badge-logo {
+  width: clamp(160px, 18vw, 260px);
+  height: clamp(160px, 18vw, 260px);
+  justify-self: center;
+  margin-bottom: 0;
+}
+
+@media (max-width: 860px) {
+  #community-intro .badge-logo,
+  #community .badge-logo { width: 160px; height: 160px; }
+}
+
+.topic-section { scroll-margin-top: 100px; }
+.topic-section + .topic-section { border-top: 1px solid var(--line); }
+.topic-section h4 { margin-top: 32px; }
+.topic-section h4:first-child { margin-top: 0; }
+.topic-desc, .topic-section ul, .topic-section ol {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  max-width: 68ch;
+  margin: 10px 0 0;
+}
+.topic-section ul, .topic-section ol { padding-left: 22px; margin-top: 8px; }
+.topic-section ul { list-style: disc; }
+.topic-section ol { list-style: decimal; }
+.topic-section li { margin-bottom: 8px; }
+.topic-section li > ul, .topic-section li > ol { margin-top: 6px; margin-bottom: 0; }
+
+/* --- SECTION 3: about / split -------------------------- */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+.split-photo { width: 100%; height: auto; border-radius: 18px; } /* real photo — no crop, native aspect ratio */
+
+/* Opt-in circle crop, used for Corey's headshot instead of the default uncropped treatment */
+.circle-photo {
+  max-width: 340px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Lending partner card — circular photo with a caption/description below it,
+   styled with the site's blue accent so it reads as part of the theme
+   rather than a plain white box. */
+.partner-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  border-bottom: 3px solid var(--accent);
+  padding: 45px 50px;
+  box-shadow: 0 18px 40px rgba(15,40,84,.14);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.partner-card:hover { transform: translateY(-4px); box-shadow: 0 22px 48px rgba(15,40,84,.2); }
+
+.partner-card-photo {
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.partner-card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.partner-card-kicker {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-align: center;
+  margin-top: 20px;
+}
+
+.partner-card-desc {
+  padding-top: 8px;
+  font-size: 15px;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+/* --- Featured Properties -------------------------------- */
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.property-card {
+  display: block;
+  width: 100%;
+  appearance: none;
+  text-align: left;
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.property-card:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(15,40,84,.12); }
+
+/* Empty listing slot — a plain div, not a <button> like real cards,
+   since there's no modal to open. No hover lift, muted text, so it
+   doesn't invite a click that goes nowhere. */
+.property-card-placeholder { cursor: default; }
+.property-card-placeholder:hover { transform: none; box-shadow: none; }
+.property-card-placeholder .property-addr,
+.property-card-placeholder .property-loc { color: var(--ink-faint); }
+
+.property-photo { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+.property-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.property-card:hover .property-photo img { transform: scale(1.04); }
+
+.property-badge {
+  position: absolute; top: 14px; left: 14px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  background: var(--white);
+  color: var(--ink);
+  padding: 6px 11px;
+}
+.property-badge-pending { background: var(--ink); color: var(--white); }
+
+.property-body { padding: 22px 22px 24px; }
+.property-price { font-family: var(--mono); font-size: 19px; margin-bottom: 6px; }
+.property-addr  { font-size: 15px; font-weight: 500; }
+.property-loc   { font-size: 13.5px; color: var(--ink-soft); margin-bottom: 16px; }
+.property-specs {
+  display: flex; gap: 18px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  margin-bottom: 14px;
+}
+.property-view {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* --- Property preview modal (native <dialog>) ----------- */
+.property-modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(880px, 92vw);
+  max-height: 88vh;
+  border: 0;
+  padding: 0;
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 30px 70px rgba(15,40,84,.3);
+}
+.property-modal::backdrop { background: rgba(15,40,84,.55); backdrop-filter: blur(2px); }
+
+.property-modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border: 0; border-radius: 50%;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 22px; line-height: 1;
+  box-shadow: 0 4px 14px rgba(15,40,84,.18);
+  cursor: pointer;
+  z-index: 2;
+}
+.property-modal-close:hover { background: var(--accent); color: var(--white); }
+
+.property-modal-body {
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 56px 40px 40px;
+}
+.property-modal-body .property-badge {
+  position: static;
+  display: inline-block;
+  margin: 0 0 14px;
+}
+.property-modal-meta {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: .04em;
+  color: var(--ink-soft);
+  margin: 8px 0 20px;
+}
+.property-modal-desc {
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  max-width: 68ch;
+  margin-bottom: 30px;
+}
+
+.property-modal-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 32px;
+}
+.property-modal-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.property-modal-gallery figcaption {
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 620px) {
+  .property-modal-gallery { grid-template-columns: 1fr; }
+  .property-modal-body { padding: 56px 22px 30px; }
+}
+
+/* --- Stat grid (About — "By the Numbers")
+   Outlined "ghost" cards — no fill, thin frame, gaps between them so
+   the section's own background shows through each one. --------- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.stat {
+  position: relative;
+  background: transparent;
+  border-left: 1px solid rgba(185,151,90,.4);
+  padding: 4px 28px;
+  text-align: center;
+  transition: opacity .25s ease;
+}
+.stat:first-child { border-left: 0; }
+.stat:hover .stat-num { color: var(--gold); }
+.stat-num {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(30px, 3vw, 42px);
+  color: var(--ink);
+  margin-bottom: 12px;
+  transition: color .25s ease;
+}
+.stat-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* --- Reviews ------------------------------------------- */
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.review {
+  background: var(--bg);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.review .mark { font-family: var(--display); font-size: 42px; line-height: 1; color: var(--accent); }
+.review p { font-size: 15px; flex-grow: 1; }
+.review .who {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+/* --- Team ------------------------------------------------ */
+.team-logo {
+  display: block;
+  height: 250px;
+  width: auto;
+  margin: 0 auto 30px;
+}
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.team-member { text-align: center; }
+
+/* ID card — replaces the old circular headshot crop. The grommet tab
+   at the top is the one signature touch: it reads as a badge you'd
+   clip to a lanyard at an open house, which is a more specific idea
+   for a real-estate team than a generic photo card. Everything else
+   stays inside the site's existing card language (white fill, hairline
+   border, sharp --radius, the same hover-lift used on .property-card). */
+.id-card {
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding-top: 22px;
+  box-shadow: 0 10px 26px rgba(15,40,84,.07);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.id-card:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(15,40,84,.13); }
+
+.id-card-clip {
+  position: absolute;
+  top: -1px; left: 50%;
+  transform: translateX(-50%);
+  width: 44px; height: 16px;
+  background: var(--ink);
+  border-radius: 0 0 9px 9px;
+}
+.id-card-clip::after {
+  content: '';
+  position: absolute;
+  top: 5px; left: 50%;
+  transform: translateX(-50%);
+  width: 18px; height: 4px;
+  border-radius: 2px;
+  background: var(--white);
+  opacity: .3;
+}
+
+.id-card-org {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  padding: 0 16px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.id-card-photo { aspect-ratio: 4/5; overflow: hidden; margin: 16px 16px 0; }
+.id-card-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+
+.id-card-body { padding: 18px 20px 24px; }
+.id-card-body h3 { margin-bottom: 4px; }
+.id-card-desc {
+  margin-top: 10px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.team-role {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* --- Contact -------------------------------------------------
+   Photo background (dusk home exterior, Unsplash — Michael Brown)
+   with a navy overlay, same dark-gradient-over-photo pattern as the
+   hero, so the section reads like a closing "come talk to me"
+   moment rather than another plain white block. ------------- */
+#contact {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+#contact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('images/contact-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 1;   /* ← add this: 0 = invisible, 1 = full strength */
+}
+#contact::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(135deg, rgba(15,40,84,.40), rgba(15,40,84,.40));
+}
+#contact > .wrap { position: relative; z-index: 1; }
+#contact .eyebrow { color: var(--gold); text-shadow: 0 2px 6px rgba(0,0,0,.45); }
+#contact .eyebrow::before { box-shadow: 0 2px 6px rgba(0,0,0,.45); }
+#contact h2 { color: var(--white); }
+#contact .lede { color: rgba(255,255,255,.85); }
+#contact .contact-details h4 { color: var(--highlight); }
+#contact .contact-details p { color: rgba(255,255,255,.85); }
+
+.contact-links { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.contact-details h4 {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.contact-details p { font-size: 15.5px; color: var(--ink-soft); }
+
+/* Fair Housing / Equal Opportunity notice link — used in both the
+   Contact section (near the license number) and the footer bottom bar. */
+.fh-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: color .2s ease;
+}
+
+/* --- Legal pages (Privacy Policy, Terms of Service) ----- */
+.legal-body { margin-top: 40px; max-width: 68ch; }
+.legal-body h3 { margin-top: 34px; margin-bottom: 12px; }
+.legal-body p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 4px; }
+.legal-body p + h3 { margin-top: 34px; }
+
+/* --- Post list (Community Involvement) ------------------
+   One card per event/initiative: photo, title, date, a short
+   excerpt, a link to the real source post, and share links.
+   Photo keeps its natural aspect ratio (no forced crop) since a
+   couple of these are event flyers where cropping could cut off
+   real information (e.g. the sponsor credit). */
+.post-list { display: flex; flex-direction: column; gap: 52px; margin-top: 44px; }
+.post-card {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 32px;
+  align-items: start;
+  padding-bottom: 52px;
+  border-bottom: 1px solid var(--line);
+}
+.post-card:last-child { border-bottom: 0; padding-bottom: 0; }
+.post-photo { border: 1px solid var(--line); background: var(--white); }
+.post-photo img { width: 100%; height: auto; display: block; }
+.post-photo-placeholder {
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px dashed var(--line);
+  background: var(--bg-alt);
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 12px;
+}
+.post-title { margin-bottom: 6px; }
+.post-date {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+.post-excerpt { color: var(--ink-soft); font-size: 15px; max-width: 60ch; }
+.post-readmore {
+  display: inline-block;
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.post-share, .post-social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+.post-share a, .post-share button, .post-social a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--white);
+  border: 0;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+.post-share a:hover, .post-share button:hover, .post-social a:hover { background: var(--accent); transform: translateY(-1px); }
+.post-share .copied::after {
+  content: 'Link copied';
+  position: absolute;
+  margin-top: -34px;
+  margin-left: -14px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  background: var(--ink);
+  color: var(--white);
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+
+@media (max-width: 620px) {
+  .post-card { grid-template-columns: 1fr; }
+  .post-photo { max-width: 280px; }
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer { background: var(--ink); color: var(--bg); padding: 76px 0 30px; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr .4fr .4fr .4fr;
+  gap: 30px;
+  padding-bottom: 46px;
+  border-bottom: 1px solid rgba(255,255,255,.14);
+}
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.footer-brand-logo { height: 150px; width: auto; flex-shrink: 0; }
+
+@media (max-width: 480px) {
+  .footer-brand-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+}
+.footer-desc { color: rgba(255,255,255,.6); font-size: 14px; max-width: 34ch; }
+.footer-grid h4 {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: var(--white);
+}
+.footer-links li { margin-bottom: 10px; }
+.footer-links a, .footer-links span { color: rgba(255,255,255,.7); font-size: 14px; transition: color .2s ease; }
+.footer-links a:hover { color: var(--highlight); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 26px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: rgba(255,255,255,.5);
+}
+.footer-bottom-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.footer-bottom-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+@media (max-width: 620px) {
+  .footer-bottom-right { align-items: flex-start; }
+}
+.fh-link-footer { color: rgba(255,255,255,.5); }
+.fh-link-footer:hover { color: var(--highlight); }
+
+.footer-legal-links { display: flex; align-items: center; gap: 8px; }
+.footer-legal-links a { color: rgba(255,255,255,.5); transition: color .2s ease; }
+.footer-legal-links a:hover { color: var(--highlight); }
+
+/* =========================================================
+   SCROLL REVEAL
+   Visible by default; JS opts in to the animation so content
+   never depends on JS to be readable.
+   ========================================================= */
+.reveal { opacity: 1; transform: none; }
+.reveal.pre { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.pre.in { opacity: 1; transform: none; }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 980px) {
+  .tiles, .reviews, .team-grid, .stat-grid, .property-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Stat dividers switch from vertical (single row) to horizontal (two rows) */
+  .stat { border-left: 0; border-top: 1px solid rgba(185,151,90,.4); padding: 28px 12px 0; }
+  .stat:nth-child(-n+2) { border-top: 0; padding-top: 4px; }
+}
+@media (max-width: 860px) {
+  .split { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .tiles, .reviews, .team-grid, .stat-grid, .property-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+
+  /* Single column now — only the very first stat sits flush with no rule above it */
+  .stat:nth-child(2) { border-top: 1px solid rgba(185,151,90,.4); padding-top: 28px; }
+}
+
+/* Grid fallback for older browsers */
+@supports not (display: grid) {
+  .tiles, .reviews, .team-grid, .footer-grid { display: flex; flex-wrap: wrap; }
+  .tile, .review, .team-member { flex: 1 1 300px; }
+}
