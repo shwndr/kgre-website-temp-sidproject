@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin Grimes | Real Estate</title>
+<meta name="description" content="Kevin Grimes — Realtor, entrepreneur, and community connector helping buyers, sellers, and renters navigate real estate with confidence.">
+
+<!-- PLACEHOLDER DOMAIN — site isn't live yet. Find-and-replace
+     https://www.kevingrimesre.com/ with the real domain once it's set,
+     everywhere it appears in this <head> block. -->
+<link rel="canonical" href="https://www.kevingrimesre.com/">
+
+<!-- Open Graph (Facebook, LinkedIn, iMessage, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kevin Grimes | Real Estate">
+<meta property="og:title" content="Kevin Grimes | Real Estate">
+<meta property="og:description" content="Kevin Grimes — Realtor, entrepreneur, and community connector helping buyers, sellers, and renters navigate real estate with confidence.">
+<meta property="og:url" content="https://www.kevingrimesre.com/">
+<meta property="og:image" content="https://www.kevingrimesre.com/images/kgre-header.png">
+<meta property="og:image:width" content="2172">
+<meta property="og:image:height" content="724">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter/X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kevin Grimes | Real Estate">
+<meta name="twitter:description" content="Kevin Grimes — Realtor, entrepreneur, and community connector helping buyers, sellers, and renters navigate real estate with confidence.">
+<meta name="twitter:image" content="https://www.kevingrimesre.com/images/kgre-header.png">
+
+<!-- Favicon — reuses the existing KGRE circle mark, no new asset needed -->
+<link rel="icon" href="images/kgre-logo.png" type="image/png">
+<link rel="apple-touch-icon" href="images/kgre-logo.png">
+<meta name="theme-color" content="#0F2854">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- Structured data — helps Google understand this is a real estate
+     agent (rich results, Knowledge Panel eligibility). Only fields we
+     actually know are filled in; no invented address/hours beyond
+     what's published elsewhere on this page. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Kevin Grimes",
+  "alternateName": "Greatness Real Estate Team",
+  "url": "https://www.kevingrimesre.com/",
+  "image": "https://www.kevingrimesre.com/images/kgsr-pic.JPG",
+  "logo": "https://www.kevingrimesre.com/images/kgre-header.png",
+  "telephone": "+1-347-734-4626",
+  "email": "KevinGrimesRE@gmail.com",
+  "areaServed": [
+    { "@type": "State", "name": "New York" },
+    { "@type": "State", "name": "Connecticut" }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/tigga",
+    "https://www.instagram.com/kevingrimesre",
+    "https://www.youtube.com/@kevingrimesre"
+  ]
+}
+</script>
+</head>
+<body>
+
+<a href="#main" class="skip-link sr-only">Skip to main content</a>
+
+<!-- =========================================================
+     NAVBAR  — transparent over hero, solid after scrolling
+     ========================================================= -->
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <img src="images/kgre-header.png" alt="Kevin Grimes Real Estate" class="brand-logo" width="2172" height="724">
+    </a>
+
+    <div class="nav-collapse">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="buyers.html">Buyers</a>
+        <a href="sellers.html">Sellers</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-extras">
+        <a href="mailto:KevinGrimesRE@gmail.com" class="social-icon" aria-label="Email — opens your mail app">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
+        </a>
+
+        <a href="tel:+13477344626" class="nav-phone">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"/></svg>
+          <span>347 734 4626</span>
+        </a>
+
+        <div class="nav-socials">
+          <a href="https://www.facebook.com/tigga" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.8h2.6l.4-3h-3v-1.9c0-.87.24-1.46 1.5-1.46h1.6V4.14C15.94 4.06 15 4 13.9 4c-2.3 0-3.9 1.4-3.9 4v2.2H7.4v3h2.6V21h3.5z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/kevingrimesre" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@kevingrimesre" class="social-icon" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M22 12s0-3.2-.4-4.7a2.9 2.9 0 0 0-2-2C17.9 5 12 5 12 5s-5.9 0-7.6.3a2.9 2.9 0 0 0-2 2C2 8.8 2 12 2 12s0 3.2.4 4.7a2.9 2.9 0 0 0 2 2C6.1 19 12 19 12 19s5.9 0 7.6-.3a2.9 2.9 0 0 0 2-2C22 15.2 22 12 22 12z"/><path fill="#14171A" d="M10 8.6 15.5 12 10 15.4z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- =========================================================
+     LANDING / HERO — full viewport height, background slideshow
+     (hero-1.jpg through hero-6.jpg, crossfaded in main.js)
+     ========================================================= -->
+<section class="hero" id="home">
+  <!-- The visual hero has no on-screen headline (wordmark logo stands
+       in for it — see the "Centered wordmark logo" comment below), so
+       the page had no real <h1> at all. This one is sr-only: same
+       text a visible headline would carry, present for SEO/screen
+       readers without changing the hero's look. -->
+  <h1 class="sr-only">Kevin Grimes — Realtor Serving New York &amp; Connecticut</h1>
+
+  <!-- Background slideshow — crossfades to the next image every 3s (see main.js) -->
+  <div class="hero-media" aria-hidden="true">
+    <div class="hero-slide active" style="background-image:url('images/hero-1.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/hero-2.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/hero-3.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/hero-4.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/hero-5.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/hero-6.jpg')"></div>
+  </div>
+
+  <!-- Centered watermark emblem, sits above the photo/overlay, behind the hero copy -->
+  <img src="images/kgre-logo.png" alt="" class="hero-watermark" aria-hidden="true" width="1254" height="1254">
+
+  <!-- Centered wordmark logo -->
+  <img src="images/kgre-header.png" alt="Kevin Grimes Real Estate" class="hero-logo" width="2172" height="724">
+
+  <!-- Vertical social rail, left edge -->
+  <div class="hero-socials">
+    <span class="hero-social-line" aria-hidden="true"></span>
+
+    <a href="https://www.facebook.com/tigga" class="hero-social-icon" aria-label="Facebook" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="25" height="25" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.8h2.6l.4-3h-3v-1.9c0-.87.24-1.46 1.5-1.46h1.6V4.14C15.94 4.06 15 4 13.9 4c-2.3 0-3.9 1.4-3.9 4v2.2H7.4v3h2.6V21h3.5z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/kevingrimesre" class="hero-social-icon" aria-label="Instagram" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@kevingrimesre" class="hero-social-icon" aria-label="YouTube" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="4"/><path d="M10.5 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>
+    </a>
+
+    <span class="hero-social-line" aria-hidden="true"></span>
+  </div>
+
+  <!-- Hero copy intentionally left blank for now -->
+  <div class="wrap">
+    <div class="hero-inner"></div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">Scroll</div>
+</section>
+
+
+<!-- =========================================================
+     SECTION — Testimonials
+     ========================================================= -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Client Reviews Based on Zillow</p>
+        <h2>What Clients Are Saying.</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auto-scrolling carousel: 7 reviews, track duplicated once so
+       the loop has no visible seam (see .reviews-carousel in
+       style.css). Moved outside .wrap so it runs edge-to-edge instead
+       of being boxed in by the wrap's max-width/gutter. Slow,
+       continuous drift to the left; pauses on hover/focus so it's
+       readable, and freezes entirely under prefers-reduced-motion
+       (site-wide rule at the top of the stylesheet already zeroes
+       animation-duration). -->
+  <div class="reviews-carousel reveal">
+      <div class="reviews-row">
+      <div class="reviews-track">
+        <div class="review">
+          <span class="review-date">Feb 3, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>Kevin is an extremely professional individual who ensured that we found the ideal home to suit our needs. He listened to exactly what we wanted, and he more than delivered. Within one month of meeting with Kevin, he was able to find our dream home. The whole process was seamless. He's also very personable and down to earth. Working with him was a pleasure and I would highly recommend him and his team to find you your dream home.</p>
+          <button type="button" class="review-toggle" aria-expanded="false">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; daliahlewis &middot; Home Buyer</span>
+          </div>
+        </div>
+
+        <div class="review">
+          <span class="review-date">Feb 3, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>Kevin and his team made it so easy for my family to buy our first home. He took time to explain everything to us and always had our back. I consider Kevin a great friend now, he is truly amazing and always is willing to help whenever I call him.</p>
+          <button type="button" class="review-toggle" aria-expanded="false">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; juanrivera112788 &middot; Home Buyer</span>
+          </div>
+        </div>
+
+        <div class="review">
+          <span class="review-date">Feb 4, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>I think we can all agree that relocating is a stressful process. I tried doing it on my own in-between working and parenting, but with my deadline drawing near I became completely overwhelmed. I was referred to Kevin and he was more than happy to assist. Within a month's time he found my dream apartment. He was very responsive and concrete with communication. I loved that he was attentive to details of my likings. His client focused mindset is definitely unmatched. He was very knowledgeable about the areas of viewings he showed and about the market in general. Kevin operated from day one with honesty and integrity. He was very resourceful. Kevin wasn't the average realtor, Kevin cared and it showed in everything he did.</p>
+          <button type="button" class="review-toggle" aria-expanded="false">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; Princess glover &middot; Leasing Client</span>
+          </div>
+        </div>
+
+        <div class="review">
+          <span class="review-date">Feb 8, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>My boy Kevin, words can't even explain how grateful I am for helping my family and I in finding our new home. For the people looking for a home I recommend 1000% Kevin Grimes, he will put in the work in order to find the home for you, not only will he find a home for you but will fight in order to get you the home no matter what. Thanks again brother, you are always invited to the family BBQ.</p>
+          <button type="button" class="review-toggle" aria-expanded="false">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; user171680 &middot; Home Buyer</span>
+          </div>
+        </div>
+
+        <div class="review">
+          <span class="review-date">Feb 21, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>Mr. Grimes was exceptionally proficient in renting our apartment. His business etiquette was admirable. He executed what we asked for and more. Should the need arise for anything to do with Real estate, Mr. Grimes is definitely my first choice.</p>
+          <button type="button" class="review-toggle" aria-expanded="false">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; raqfran5 &middot; Leasing Client</span>
+          </div>
+        </div>
+
+        <div class="review">
+          <span class="review-date">Apr 22, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>Finding the right home can be overwhelming! Working with Mr. Grimes made it easier. He was professional, patient and reliable. His outstanding communication and follow through on addressing concerns made him a credible source to work with. He possesses strong negotiation skills that favor his clients. I highly recommend Mr. Grimes as your agent.</p>
+          <button type="button" class="review-toggle" aria-expanded="false">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; ms hammett15 &middot; Leasing Client</span>
+          </div>
+        </div>
+
+        <div class="review">
+          <span class="review-date">Jul 1, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>Kevin was extremely knowledgeable and patient. I don't know the amount of houses we seen, but it was definitely over 10 and each time he was as excited as I was to see them. Contacted at anytime of night and he responded with attentiveness to make sure the deal was done. If I or friends have to house hunt in the future, please believe that I'm calling Kevin.</p>
+          <button type="button" class="review-toggle" aria-expanded="false">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; yannickc1985 &middot; Home Buyers</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Duplicate set, hidden from assistive tech and tab order — exists only so the marquee loop is seamless. -->
+      <div class="reviews-track" aria-hidden="true">
+        <div class="review">
+          <span class="review-date">Feb 3, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>Kevin is an extremely professional individual who ensured that we found the ideal home to suit our needs. He listened to exactly what we wanted, and he more than delivered. Within one month of meeting with Kevin, he was able to find our dream home. The whole process was seamless. He's also very personable and down to earth. Working with him was a pleasure and I would highly recommend him and his team to find you your dream home.</p>
+          <button type="button" class="review-toggle" aria-expanded="false" tabindex="-1">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; daliahlewis &middot; Home Buyer</span>
+          </div>
+        </div>
+
+        <div class="review">
+          <span class="review-date">Feb 3, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>Kevin and his team made it so easy for my family to buy our first home. He took time to explain everything to us and always had our back. I consider Kevin a great friend now, he is truly amazing and always is willing to help whenever I call him.</p>
+          <button type="button" class="review-toggle" aria-expanded="false" tabindex="-1">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; juanrivera112788 &middot; Home Buyer</span>
+          </div>
+        </div>
+
+        <div class="review">
+          <span class="review-date">Feb 4, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>I think we can all agree that relocating is a stressful process. I tried doing it on my own in-between working and parenting, but with my deadline drawing near I became completely overwhelmed. I was referred to Kevin and he was more than happy to assist. Within a month's time he found my dream apartment. He was very responsive and concrete with communication. I loved that he was attentive to details of my likings. His client focused mindset is definitely unmatched. He was very knowledgeable about the areas of viewings he showed and about the market in general. Kevin operated from day one with honesty and integrity. He was very resourceful. Kevin wasn't the average realtor, Kevin cared and it showed in everything he did.</p>
+          <button type="button" class="review-toggle" aria-expanded="false" tabindex="-1">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; Princess glover &middot; Leasing Client</span>
+          </div>
+        </div>
+
+        <div class="review">
+          <span class="review-date">Feb 8, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>My boy Kevin, words can't even explain how grateful I am for helping my family and I in finding our new home. For the people looking for a home I recommend 1000% Kevin Grimes, he will put in the work in order to find the home for you, not only will he find a home for you but will fight in order to get you the home no matter what. Thanks again brother, you are always invited to the family BBQ.</p>
+          <button type="button" class="review-toggle" aria-expanded="false" tabindex="-1">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; user171680 &middot; Home Buyer</span>
+          </div>
+        </div>
+
+        <div class="review">
+          <span class="review-date">Feb 21, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>Mr. Grimes was exceptionally proficient in renting our apartment. His business etiquette was admirable. He executed what we asked for and more. Should the need arise for anything to do with Real estate, Mr. Grimes is definitely my first choice.</p>
+          <button type="button" class="review-toggle" aria-expanded="false" tabindex="-1">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; raqfran5 &middot; Leasing Client</span>
+          </div>
+        </div>
+
+        <div class="review">
+          <span class="review-date">Apr 22, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>Finding the right home can be overwhelming! Working with Mr. Grimes made it easier. He was professional, patient and reliable. His outstanding communication and follow through on addressing concerns made him a credible source to work with. He possesses strong negotiation skills that favor his clients. I highly recommend Mr. Grimes as your agent.</p>
+          <button type="button" class="review-toggle" aria-expanded="false" tabindex="-1">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; ms hammett15 &middot; Leasing Client</span>
+          </div>
+        </div>
+
+        <div class="review">
+          <span class="review-date">Jul 1, 2025</span>
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <p>Kevin was extremely knowledgeable and patient. I don't know the amount of houses we seen, but it was definitely over 10 and each time he was as excited as I was to see them. Contacted at anytime of night and he responded with attentiveness to make sure the deal was done. If I or friends have to house hunt in the future, please believe that I'm calling Kevin.</p>
+          <button type="button" class="review-toggle" aria-expanded="false" tabindex="-1">See more</button>
+          <div class="review-foot">
+            <span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="who">&middot; yannickc1985 &middot; Home Buyers</span>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+</section>
+
+
+<!-- =========================================================
+     SECTION — About
+     ========================================================= -->
+<section id="about" class="section-alt">
+  <!-- Vertical social rail, right edge (copied from the hero's) -->
+  <div class="about-socials">
+    <span class="about-social-line" aria-hidden="true"></span>
+
+    <a href="https://www.facebook.com/tigga" class="about-social-icon" aria-label="Facebook" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.8h2.6l.4-3h-3v-1.9c0-.87.24-1.46 1.5-1.46h1.6V4.14C15.94 4.06 15 4 13.9 4c-2.3 0-3.9 1.4-3.9 4v2.2H7.4v3h2.6V21h3.5z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/kevingrimesre" class="about-social-icon" aria-label="Instagram" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@kevingrimesre" class="about-social-icon" aria-label="YouTube" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="4"/><path d="M10.5 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>
+    </a>
+
+    <span class="about-social-line" aria-hidden="true"></span>
+  </div>
+
+  <div class="wrap split">
+    <img src="images/kgsr-pic.JPG" alt="Kevin Grimes Sr." class="split-photo reveal" width="667" height="1000" loading="lazy">
+
+    <div class="reveal">
+      <p class="eyebrow">Team Lead, Greatness Real Estate Team · Realty ONE Group Connect</p>
+      <h2>Relationships, integrity, and results — beyond the closing table.</h2>
+      <p class="team-role" style="margin-top:10px;">Realtor • Entrepreneur • Community Connector</p>
+      <p class="lede" style="margin-top:18px;">Kevin Grimes Sr. is an experienced real estate professional, entrepreneur, and community connector with more than a decade in the real estate industry. As Team Lead of the Greatness Real Estate Team at Realty ONE Group Connect, Kevin has built his business on relationships, integrity, and results, helping buyers, sellers, renters, and investors confidently navigate their real estate journey. With more than $50 million in career real estate transactions, Kevin's approach goes beyond closing deals — he focuses on educating clients, creating opportunities, building lasting relationships, and becoming a trusted resource long after the transaction is complete. Known as "Your Favorite Realtor," Kevin continues to expand his impact through entrepreneurship, networking, mentorship, and community involvement.</p>
+      <p class="team-role" style="margin-top:18px;">Three-Time Realtor of the Year · Top Producing Agent (2023 &amp; 2024) · Buyer's Agent Certified in NY &amp; CT</p>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:64px;">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Track Record</p>
+        <h2>By the Numbers</h2>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat reveal">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Years in Real Estate</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-num">$50M+</span>
+        <span class="stat-label">Career Transaction Volume</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-num">3x</span>
+        <span class="stat-label">Realtor of the Year</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-num">NY &amp; CT</span>
+        <span class="stat-label">Licensed Buyer's Agent</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:64px;">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">How Kevin Works</p>
+        <h2>What Clients Can Expect</h2>
+      </div>
+    </div>
+
+    <div class="tiles tiles-minimal">
+      <div class="tile reveal">
+        <h3>Relationships Built on Trust</h3>
+        <p>Kevin's business is built on relationships, integrity, and results — helping clients navigate real estate with confidence.</p>
+      </div>
+
+      <div class="tile reveal">
+        <h3>Education First</h3>
+        <p>Kevin's approach goes beyond closing deals, focusing on educating clients at every step of the journey.</p>
+      </div>
+
+      <div class="tile reveal">
+        <h3>A Resource for the Long Run</h3>
+        <p>Kevin stays a trusted resource for clients — long after the transaction is complete.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     SECTION — Community Involvement
+     Kept minimal on purpose — this is supplementary to the About
+     section, not competing with it. Full story lives on its own
+     page (community-involvement.html); not in the main nav, same
+     reasoning — About stays the primary "about Kevin" destination.
+     Background photo is a general "people connecting" shot, not a
+     photo of an actual Kevin event (no real event photos on hand) —
+     kept warm and unbranded so it doesn't imply otherwise. Same
+     photo-band + navy-gradient pattern as the hero/#contact and the
+     Buyers/Sellers guide headers (see #community in style.css).
+     ========================================================= -->
+<section id="community">
+  <div class="wrap split">
+    <!-- Circular crop is done in CSS (.badge-logo) — see the matching
+         comment on community-involvement.html's #community-intro. -->
+    <img src="images/greatness-witha-purpose.jpeg" alt="Greatness With a Purpose" class="badge-logo reveal" width="1599" height="1599" loading="lazy">
+    <div class="reveal">
+      <p class="eyebrow">Beyond Real Estate</p>
+      <h2>Community Involvement</h2>
+      <p class="lede" style="margin-top:18px; max-width:none;">Kevin's work doesn't stop at closing deals — he's also active in the Bronx community, from youth college-readiness events to everyday neighborhood support.</p>
+      <div class="contact-links" style="margin-top:26px;">
+        <a href="community-involvement.html" class="btn btn-light">Read More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     SECTION — Team
+     ========================================================= -->
+<section id="team">
+  <div class="wrap">
+    <img src="images/greatness-realestate-team.png" alt="Greatness Real Estate Team" class="team-logo" width="700" height="700" loading="lazy">
+
+    <!-- Only one team member confirmed so far — team-grid becomes
+         team-grid-single so the one real card doesn't stretch to fill
+         a 3-column row. See .team-grid-single in style.css. -->
+    <div class="team-grid team-grid-single">
+      <div class="team-member reveal">
+        <!-- ID-card treatment: grommet tab reads as a badge hole-punch,
+             org strip echoes the team-logo above, photo is a straight
+             portrait crop (no circle). See .id-card in style.css. -->
+        <div class="id-card">
+          <span class="id-card-clip" aria-hidden="true"></span>
+          <p class="id-card-org">Greatness Real Estate Team</p>
+          <div class="id-card-photo">
+            <img src="images/tsahai-holder.jpg" alt="Tsahai Holder" width="473" height="590" loading="lazy">
+          </div>
+          <div class="id-card-body">
+            <h3>Tsahai Holder</h3>
+            <p class="team-role">Real Estate Agent</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     SECTION — Buyers & Sellers
+     ========================================================= -->
+<section id="listings" class="section-alt">
+  <!-- Background slideshow — crossfades to the next image every 3s (see main.js) -->
+  <div class="hero-media" aria-hidden="true">
+    <div class="hero-slide active" style="background-image:url('images/hero-1.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/hero-2.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/hero-3.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/hero-4.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/hero-5.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/hero-6.jpg')"></div>
+  </div>
+
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Buyers &amp; Sellers</p>
+        <h2>Whether You're Buying, Selling, or Renting — Kevin Has You Covered.</h2>
+      </div>
+    </div>
+
+    <p class="lede reveal">From evaluating what your home is worth to helping you find the right property to buy or rent, Kevin Grimes and the Greatness Real Estate Team walk you through every step — with clear communication and zero guesswork.</p>
+
+    <div class="contact-links reveal" style="margin:26px 0 44px;">
+      <a href="buyers.html" class="btn btn-light">For Buyers</a>
+      <a href="sellers.html" class="btn btn-light">For Sellers</a>
+    </div>
+
+    <div class="tiles">
+      <div class="tile reveal" style="--tile-bg:url('images/hero-1.jpg')">
+        <span class="num" aria-hidden="true">&mdash;</span>
+        <h3>Buy a Home</h3>
+        <p>From your first showing to closing day, Kevin helps you find the right property and negotiate with confidence.</p>
+      </div>
+
+      <div class="tile reveal" style="--tile-bg:url('images/hero-3.jpg')">
+        <span class="num" aria-hidden="true">&mdash;</span>
+        <h3>Sell Your Home</h3>
+        <p>Get a clear, no-obligation evaluation of your home's current market value — and a plan to get it sold for top dollar.</p>
+      </div>
+
+      <div class="tile reveal" style="--tile-bg:url('images/hero-5.jpg')">
+        <span class="num" aria-hidden="true">&mdash;</span>
+        <h3>Rent a Property</h3>
+        <p>From apartment hunting to lease negotiations, Kevin helps renters find a place that fits their life and their budget.</p>
+      </div>
+    </div>
+
+    <div class="section-cta reveal">
+      <p>Ready to talk it through? Book a free call with Kevin — no pressure, just answers.</p>
+      <a href="https://calendly.com/kevingrimesre" target="_blank" rel="noopener" class="btn btn-solid">Schedule a Call</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     SECTION — Preferred Lending Partner
+     ========================================================= -->
+<section id="lending" class="section-alt">
+  <div class="wrap split">
+    <div class="partner-card reveal">
+      <div class="partner-card-photo">
+        <img src="images/corey-anglin.jpg" alt="Corey Anglin" width="337" height="337" loading="lazy">
+      </div>
+      <span class="partner-card-kicker"><b>Trusted Mortgage Partner</b></span>
+      <p class="partner-card-desc">Kevin works closely with a trusted mortgage partner to help buyers get pre-approved quickly and understand their financing options before they ever step into an open house.</p>
+    </div>
+
+    <div class="reveal">
+      <p class="eyebrow">Preferred Lending Partner</p>
+      <h2>Corey Anglin</h2>
+      
+      <p class="team-role" style="margin-top:18px;">Originating Branch Manager, CrossCountry Mortgage</p>
+      <p class="team-role" style="margin-top:6px;">NMLS #100035 · 19+ Years of Home Financing Experience</p>
+
+      <div class="reveal contact-details" style="margin-top:26px;">
+        <div>
+          <h4>Phone</h4>
+          <p>Mobile: 914 570 9661<br>Office: 914 509 1255</p>
+        </div>
+        <div>
+          <h4>Office</h4>
+          <p>4 West Red Oak Lane, Suite 205<br>White Plains, NY 10604</p>
+        </div>
+      </div>
+
+      <div class="contact-links" style="margin-top:30px;">
+        <a href="tel:+19145709661" class="btn">Call Corey</a>
+        <a href="https://crosscountrymortgage.com/white-plains-ny-3836/corey-anglin/" target="_blank" rel="noopener" class="btn btn-solid">Visit Corey's Profile</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     SECTION — Featured Properties
+     Card 1 is Kevin's real active listing (450 Pelham Road #2E,
+     New Rochelle — MLS #1000459), sourced from the OneKey MLS
+     shared listing page. Cards 2 and 3 are blank placeholders —
+     the fictional listings that used to be here were removed at
+     the site owner's request; drop in real listings when available
+     (see Card 1 for the expected markup: property-card + matching
+     <dialog> preview).
+     ========================================================= -->
+<section id="properties">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Featured Properties</p>
+        <h2>See What's Available Right Now.</h2>
+      </div>
+    </div>
+
+    <div class="property-grid">
+      <button type="button" class="property-card reveal" data-modal="property-1-modal">
+        <div class="property-photo">
+          <img src="images/listings/property-1-exterior.jpg" alt="450 Pelham Road #2E exterior" width="1024" height="682" loading="lazy">
+          <span class="property-badge">For Sale</span>
+        </div>
+        <div class="property-body">
+          <p class="property-price">$135,000</p>
+          <p class="property-addr">450 Pelham Road #2E</p>
+          <p class="property-loc">New Rochelle, NY</p>
+          <div class="property-specs"><span>1 Bed</span><span>1 Bath</span><span>750 Sq Ft</span></div>
+          <span class="property-view">View Full Property →</span>
+        </div>
+      </button>
+
+      <!-- Placeholder — no real listing here yet -->
+      <div class="property-card property-card-placeholder">
+        <div class="property-photo">
+          <div class="post-photo-placeholder" style="height:100%;" aria-hidden="true">Photo coming soon</div>
+        </div>
+        <div class="property-body">
+          <p class="property-addr">New listing coming soon</p>
+          <p class="property-loc">Details to be added</p>
+        </div>
+      </div>
+
+      <!-- Placeholder — no real listing here yet -->
+      <div class="property-card property-card-placeholder">
+        <div class="property-photo">
+          <div class="post-photo-placeholder" style="height:100%;" aria-hidden="true">Photo coming soon</div>
+        </div>
+        <div class="property-body">
+          <p class="property-addr">New listing coming soon</p>
+          <p class="property-loc">Details to be added</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property 1 preview — real listing, Huguenot Gardens co-op.
+       MLS remarks: needs renovation (~$10K estimated), monthly
+       maintenance $1,252.75 (includes heat, hot water, sewer,
+       garbage, taxes), 1 pet under 25 lbs allowed, assigned parking. -->
+  <dialog id="property-1-modal" class="property-modal">
+    <button type="button" class="property-modal-close" aria-label="Close">&times;</button>
+    <div class="property-modal-body">
+      <p class="property-badge">For Sale</p>
+      <h3>450 Pelham Road #2E</h3>
+      <p class="property-modal-meta">New Rochelle, NY &nbsp;·&nbsp; $135,000 &nbsp;·&nbsp; 1 Bed &nbsp;·&nbsp; 1 Bath &nbsp;·&nbsp; 750 Sq Ft</p>
+      <p class="property-modal-desc">Needs renovations and is priced accordingly! This spacious one-bedroom co-op offers a fantastic opportunity for a buyer looking to customize and add value. The unit would benefit from new flooring and cosmetic updates, with an estimated renovation cost of approximately $10,000, making it an ideal opportunity to create your dream home while building equity. Features include a large living room, eat-in kitchen, oversized bedroom with great natural light, and ample closet space throughout. Located in a charming garden-style complex, the property is conveniently situated near transportation, shopping, dining, Glen Island Park, and local beaches.Pet-friendly with one pet under 25 lbs permitted. Assigned parking available based on building practice. Monthly maintenance of $1,252.75 includes heat, hot water, sewer, garbage collection, and taxes. Don’t miss this opportunity to bring your vision to life and own a spacious home in a desirable location.</p>
+
+      <!-- Figures now use each photo's REAL dimensions (all ~1024x682,
+           roughly 3:2) instead of a forced 16:9 box. A fixed 16:9 box +
+           object-fit:contain was tried first, but these photos are all
+           landscape-ish 3:2 already, not 16:9, so contain was pillar-
+           boxing them (empty space) — real dimensions means the box
+           always exactly matches the visible photo, so there's never
+           dead space between the image and its caption.
+           Note: property-1-exterior2.jpg was a byte-for-byte duplicate
+           of property-1-exterior.jpg (verified via checksum) and has
+           been deleted from the images folder — if a different photo
+           was meant to go there, it'll need to be re-added. -->
+      <div class="property-modal-gallery">
+        <figure>
+          <img src="images/listings/property-1-exterior.jpg" alt="450 Pelham Road #2E — exterior" width="1024" height="682" loading="lazy">
+          <figcaption>Exterior</figcaption>
+        </figure>
+        <figure>
+          <img src="images/listings/property-1-exterior1.jpg" alt="450 Pelham Road #2E — entrance" width="1024" height="682" loading="lazy">
+          <figcaption>Entrance</figcaption>
+        </figure>
+        <figure>
+          <img src="images/listings/property-1-hallway1.jpg" alt="450 Pelham Road #2E — building hallway" width="1024" height="685" loading="lazy">
+          <figcaption>Building Hallway</figcaption>
+        </figure>
+        <figure>
+          <img src="images/listings/property-1-stairs.jpg" alt="450 Pelham Road #2E — stairwell and mailboxes" width="1024" height="682" loading="lazy">
+          <figcaption>Stairwell &amp; Mailboxes</figcaption>
+        </figure>
+        <figure>
+          <img src="images/listings/property-1-emptyroom1.jpg" alt="450 Pelham Road #2E — entry and dining area" width="1024" height="682" loading="lazy">
+          <figcaption>Entry / Dining Area</figcaption>
+        </figure>
+        <figure>
+          <img src="images/listings/property-1-living.jpg" alt="450 Pelham Road #2E — living room, furnished" width="1024" height="685" loading="lazy">
+          <figcaption>Empty Room 1</figcaption>
+        </figure>
+        <figure>
+          <img src="images/listings/property-1-emptyroom2.jpg" alt="450 Pelham Road #2E — living room, vacant" width="1024" height="682" loading="lazy">
+          <figcaption>Empty Room 2</figcaption>
+        </figure>
+        <figure>
+          <img src="images/listings/property-1-kitchen.jpg" alt="450 Pelham Road #2E — kitchen" width="1024" height="682" loading="lazy">
+          <figcaption>Kitchen</figcaption>
+        </figure>
+        <figure>
+          <img src="images/listings/property-1-bedroom.jpg" alt="450 Pelham Road #2E — bedroom" width="1024" height="682" loading="lazy">
+          <figcaption>Bedroom</figcaption>
+        </figure>
+        <figure>
+          <img src="images/listings/property-1-laundryroom.jpg" alt="450 Pelham Road #2E — building laundry room" width="1024" height="682" loading="lazy">
+          <figcaption>Laundry Room</figcaption>
+        </figure>
+      </div>
+
+      <div class="contact-links">
+        <a href="https://calendly.com/kevingrimesre" target="_blank" rel="noopener" class="btn btn-solid">Schedule a Showing</a>
+      </div>
+    </div>
+  </dialog>
+</section>
+
+
+<!-- =========================================================
+     SECTION — Contact
+     ========================================================= -->
+<section id="contact">
+  <div class="wrap split">
+    <div class="reveal">
+      <p class="eyebrow">Get In Touch</p>
+      <h2>Let's Talk About Your Move.</h2>
+      <p class="lede" style="margin-top:18px;">Whether you're buying, selling, renting, or just have questions, Kevin is a call or email away — no pressure, just answers.</p>
+
+      <div class="contact-links">
+        <a href="tel:+13477344626" class="btn btn-light">Call 347 734 4626</a>
+        <a href="mailto:KevinGrimesRE@gmail.com" class="btn btn-solid">Email Me</a>
+      </div>
+    </div>
+
+    <div class="reveal contact-details">
+      <div>
+        <h4>Phone</h4>
+        <p>347 734 4626</p>
+      </div>
+      <div>
+        <h4>Email</h4>
+        <p>KevinGrimesRE@gmail.com</p>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <p>Monday to Friday: 8am – 8pm<br>Saturday to Sunday: 10am – 5pm</p>
+      </div>
+      <div>
+        <h4>License</h4>
+        <p>RES.10401281238</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand-row">
+        <img src="images/greatness-realestate-team.png" alt="Greatness Real Estate Team" class="footer-brand-logo" width="700" height="700" loading="lazy">
+        <p class="footer-desc">Realtor, entrepreneur, and community connector — helping buyers, sellers, renters, and investors navigate real estate with confidence.</p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#team">Meet the Team</a></li>
+          <li><a href="community-involvement.html">Community Involvement</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="buyers.html">Buyers</a></li>
+          <li><a href="sellers.html">Sellers</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><span>347 734 4626</span></li>
+          <li><span>KevinGrimesRE@gmail.com</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <span>&copy; <span id="year">2026</span> Kevin Grimes. All rights reserved.</span>
+        <span>Licensed Real Estate Agent · License #RES.10401281238</span>
+      </div>
+      <div class="footer-bottom-right">
+        <a href="https://dos.ny.gov/system/files/documents/2021/03/2156.pdf" target="_blank" rel="noopener" class="fh-link fh-link-footer">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M9 14h6M9 17h6"/></svg>
+          <span>Equal Housing Opportunity · Fair Housing Notice</span>
+        </a>
+        <span class="footer-legal-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <span aria-hidden="true">·</span>
+          <a href="terms.html">Terms of Service</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
